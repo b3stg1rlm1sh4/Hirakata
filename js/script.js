@@ -63,35 +63,8 @@ blocks.forEach(function(block) {
 })
 
 const colourCycle = setInterval(() => {
-  switch(pair) {
-    case 1:
-      colour = colours[0];
-      break;
-    case 3:
-      colour = colours[1];
-      break;
-    case 5:
-      colour = colours[2];
-      break;
-    case 7:
-      colour = colours[3];
-      break;
-    case 9:
-      colour = colours[4];
-      break;
-    case 11:
-      colour = colours[5];
-      break;
-    case 13:
-      colour = colours[6];
-      break;
-    case 15:
-      colour = colours[7];
-      break;
-    case 17:
-      over = true;
-      break;
-  }
+  if(pair == 17) over = true;
+  colour = colours[(pair-1)/2]
 }, 15)
 
 const timeProg = setInterval(() => {
