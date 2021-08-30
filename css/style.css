@@ -1,0 +1,95 @@
+*, *::before, *::after {
+    box-sizing: border-box;
+    font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif
+}
+
+body {
+    padding: 0;
+    margin: 0;
+    height: 100vh;
+    width: 100vw;
+    
+    display: flex;
+    flex-flow: column;
+    justify-content: center;
+    align-items: center;
+    gap:35px;
+
+    background-color: hsl(0, 0%, 20%);
+    color: #ffe;
+
+    animation: cycle-background 15s ease-in-out forwards infinite alternate;
+}
+
+.container {
+    width: 800px;
+    max-width: 80%;
+    margin: 20px;
+    background-color: #252525;
+    padding: 10px;
+    border-radius: 16px;
+    box-shadow: black 1px 1px 4px;
+}
+
+.btn-grid, .obj-grid {
+    display: grid;
+    grid-template-columns: repeat(1, auto);
+    gap: 10px;
+    margin-top: 10px;
+}
+
+#play-space {
+  grid-template-columns: repeat(4, auto);
+}
+
+.obj-grid {
+    gap: 20px;
+}
+
+.sub-container {
+    background-color: hsl(0, 0%, 20%);
+    height: fit-content;
+    width: fit-content;
+    color: hsl(58, 72%, 72%);
+    border-radius: 12px;
+    padding: 5px 10px;
+    outline: none;
+}
+
+.btn, .inp, .select, .game-btn {
+    background-color: hsl(0, 0%, 30%);
+    color: hsl(0, 0%, 75%);
+    border: 1px solid #252525;
+    border-radius: 12px;
+    padding: 5px 10px;
+    outline: none;
+}
+
+.game-btn {
+  height: 60px;
+  width: 60px;
+}
+
+.btn, .game-btn {
+    transition: all 0.5s;
+}
+
+.btn:hover {
+    color: hsl(58, 72%, 72%);
+    background-color: hsl(0, 0%, 35%);
+}
+
+.game-btn:hover {
+    color: hsl(0, 0%, 100%);
+    background-color: hsl(0, 0%, 35%);
+}
+
+@keyframes cycle-background {
+    100% {
+        background-color: #efa5df;
+    }
+
+    0% {
+        background-color: #93e7ba;
+    }
+}
