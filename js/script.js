@@ -63,7 +63,7 @@ blocks.forEach(function(block) {
 })
 
 const colourCycle = setInterval(() => {
-  if(pair == 17) over = true;
+  if(pair == 16) over = true;
   colour = colours[Math.ceil((pair-1)/2)];
 }, 15)
 
