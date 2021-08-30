@@ -16,7 +16,7 @@ let colours = [
 ]
 let bCount = 1;
 let colour;
-let pair = 1;
+let pair = 0;
 let time = 30;
 let score = 0;
 let over = false;
@@ -64,7 +64,7 @@ blocks.forEach(function(block) {
 
 const colourCycle = setInterval(() => {
   if(pair == 17) over = true;
-  colour = colours[(pair-1)/2]
+  colour = colours[Math.ceil((pair-1)/2)];
 }, 15)
 
 const timeProg = setInterval(() => {
