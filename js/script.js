@@ -1,3 +1,4 @@
+// init declarations for HTML elements
 const scoreDisplay = document.getElementById("score-display");
 const timeDisplay = document.getElementById("time-display");
 const blocks = [
@@ -7,6 +8,9 @@ const blocks = [
   document.getElementById("btn15"), document.getElementById("btn16")
 ]
 
+
+
+// init variable declarations
 let used = [];
 let hira = ["あ", "え", "い", "お", "う", "か", "け", "き"];
 let kata = ["ア", "エ", "イ", "オ", "ウ", "カ", "ケ", "九"];
@@ -21,6 +25,9 @@ let time = 30;
 let score = 0;
 let over = false;
 
+
+
+// check for value in a given array
 function beenUsed(val, arr) {
   for(let i = 0; i < arr.length; i++) {
     if(arr[i] == val) return true;
@@ -28,6 +35,9 @@ function beenUsed(val, arr) {
   return false;
 }
 
+
+
+// load the gameboard
 blocks.forEach(function(block) {
   let _;
   let index;
@@ -53,7 +63,6 @@ blocks.forEach(function(block) {
   bCount++;
   block.textContent = _;
   block.setAttribute("hirakata", hira[index]);
-  console.log(`${block.id}: ${block.getAttribute("hirakata")}`);
 
   block.addEventListener("click", function match() {
     pair++;
@@ -63,15 +72,24 @@ blocks.forEach(function(block) {
   })
 })
 
+
+
+// changes colours in accordance with num of guessed pairs
 const colourCycle = setInterval(() => {
   if(pair == 16) over = true;
   colour = colours[Math.ceil((pair-1)/2)];
 }, 15)
 
+
+
+// alters value of time each second
 const timeProg = setInterval(() => {
   if(time >= 1) time -= 1;
 }, 1000)
 
+
+
+// updates the HTML element displaying remainin time
 const updater = setInterval(() => {
   if(time == 0) {
     over = true;
@@ -79,8 +97,12 @@ const updater = setInterval(() => {
   timeDisplay.textContent = `Time: ${time}`;
 }, 5)
 
+
+
+// game end sequence
 const endDetector = setInterval(() => {
   if(over) {
+    // stopping timer functions
     clearInterval(colourCycle);
     clearInterval(timeProg);
     clearInterval(updater);
@@ -93,18 +115,20 @@ const endDetector = setInterval(() => {
     blocks.forEach(function(block) {
       block.disabled = true;
 
+      // detect pairs and calculate score
       for(let i = 0; i < blocks.length; i++) {
         if(blocks[i].style.backgroundColor == "") continue;
         if(block.id == blocks[i].id) continue;
         if(beenUsed(block.id, matched)) continue;
         if(block.getAttribute("hirakata") != blocks[i].getAttribute("hirakata")) continue;
         if(block.style.backgroundColor != blocks[i].style.backgroundColor) continue;
+
         matched[i] = blocks[i].id;
         score++;
-        console.log(`${block.id} : ${blocks[i].id}`);
       }
     })
 
+    // update HTML element displaying score
     scoreDisplay.textContent = `Score: ${score}`;
     clearInterval(endDetector);
   }
