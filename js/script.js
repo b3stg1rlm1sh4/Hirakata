@@ -59,6 +59,7 @@ blocks.forEach(function(block) {
     pair++;
     block.style.backgroundColor = colour;
     block.style.color = "#ffffff";
+    block.disabled = true;
   })
 })
 
